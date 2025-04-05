@@ -44,6 +44,9 @@ def bin_len(f: list[str]) -> dict[int, set[str]]:
     result = {}
     for word in f:
         length = len(word)
-        if word not in result:
-            result[length] = set()
+        if length not in result:
+            result[length] = {word}
+        else:
+            result[length] = set(result[length])
+            result[length] = result[length] | {word}
     return result
